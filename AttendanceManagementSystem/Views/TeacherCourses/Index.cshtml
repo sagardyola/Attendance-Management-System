@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.TeacherCourse>
+
+@{
+    ViewBag.Title = "Assign a Course to teacher";
+}
+
+<h3>Assign a Course to teacher</h3>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "TeacherCourses")'"><i class="fas fa-plus mr-2 txt-default"></i>Assign a Course to teacher</button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher.TeacherName)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
+            </td>
+
+        </tr>
+    }
+
+</table>

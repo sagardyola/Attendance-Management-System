@@ -1,0 +1,74 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.TeacherType>
+
+@{
+    ViewBag.Title = "Teacher Types";
+}
+
+<h3>Teacher Types</h3>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "TeacherTypes")'"><i class="fas fa-plus mr-2 txt-default"></i>Add a Teacher Type</button>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    <div class="form-inline">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            using (Html.BeginForm("Edit", "TeacherTypes", FormMethod.Get))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.TeacherTypeID" />
+                                <button type="submit" class="btn pt-0 pb-0" title="Edit Teacher Type"><i class="fas fa-edit"></i></button>
+                            }
+
+                            <button class="btn pt-0 pb-0 btnDeleteTeacher" title="Delete Teacher Type" data-id="@item.TeacherTypeID"><i class="fas fa-trash-alt"></i></button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script>
+    $('.btnDeleteTeacher').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("Delete", "TeacherTypes")",
+                        method: "post",
+                        data: {
+                            id: $(this).attr("data-id")
+                        }
+                    }).done(function (response) {
+                        swal("Success", "Teacher type has been deleted!", {
+                            icon: "success",
+                        })
+                            .then((value) => {
+                                window.location.reload();
+                            });
+                    });
+
+                }
+            });
+    });
+</script>

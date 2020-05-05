@@ -1,0 +1,42 @@
+﻿@model AttendanceManagementSystem.ViewModels.ExploreModulesVM
+
+@{
+    ViewBag.Title = "Teacher Module Report";
+}
+
+<h2>Teacher Module Report</h2>
+@using (Html.BeginForm("Index", "ReportModules", FormMethod.Get))
+{
+    <div class="container mb-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-inline">
+                    <label>Course</label>
+                    @Html.DropDownList("CourseID", null, htmlAttributes: new { @class = "form-control rounded-0 ml-2 mr-5" })
+
+                    <label>Semester</label>
+                    @Html.DropDownList("SemesterID", null, htmlAttributes: new { @class = "form-control rounded-0 ml-2" })
+                    <button type="submit" value="Search" class="btn btn-primary rounded-0 ml-2">Search</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>Teacher Name</th>
+        <th>Teacher Type</th>
+    </tr>
+
+    @foreach (var x in ViewBag.Explore)
+    {
+        <tr>
+            <td>@x.TeacherName</td>
+            <td>@x.TypeName</td>
+        </tr>
+    }
+
+</table>

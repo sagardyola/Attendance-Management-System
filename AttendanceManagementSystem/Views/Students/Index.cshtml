@@ -1,0 +1,104 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Add a Student";
+}
+
+<h2>Add a Student</h2>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "Students")'"><i class="fas fa-plus mr-2 txt-default"></i>Add a Student</button>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SemesterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacultyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+
+                <div class="form-inline">
+                    @using (Html.BeginForm("Details", "Students", FormMethod.Get))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@item.StudentID" />
+                        <button type="submit" class="btn pt-0 pb-0" title="Details"><i class="fas fa-info-circle"></i></button>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        using (Html.BeginForm("Edit", "Students", FormMethod.Get))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.StudentID" />
+                            <button type="submit" class="btn pt-0 pb-0" title="Edit Student"><i class="fas fa-edit"></i></button>
+                        }
+
+                        <button class="btn pt-0 pb-0 btnDeleteStudent" title="Delete Student" data-id="@item.StudentID"><i class="fas fa-trash-alt"></i></button>
+                    }
+                </div>
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+    <script>
+    $('.btnDeleteStudent').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("Delete", "Students")",
+                        method: "post",
+                        data: {
+                            id: $(this).attr("data-id")
+                        }
+                    }).done(function (response) {
+                        swal("Success", "Student has been deleted!", {
+                            icon: "success",
+                        })
+                            .then((value) => {
+                                window.location.reload();
+                            });
+                    });
+
+                }
+            });
+    });
+    </script>

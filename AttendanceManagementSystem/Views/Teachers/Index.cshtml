@@ -1,0 +1,103 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Teacher>
+
+@{
+    ViewBag.Title = "Teachers";
+}
+
+<h3>Teachers</h3>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "Teachers")'"><i class="fas fa-plus mr-2 txt-default"></i>Add a Teacher</button>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherType.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeachingHours)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherType.TypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeachingHours)
+                </td>
+                <td>
+                    <div class="form-inline">
+                        @using (Html.BeginForm("Details", "Teachers", FormMethod.Get))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.TeacherID" />
+                            <button type="submit" class="btn pt-0 pb-0" title="Details"><i class="fas fa-info-circle"></i></button>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            using (Html.BeginForm("Edit", "Teachers", FormMethod.Get))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.TeacherID" />
+                                <button type="submit" class="btn pt-0 pb-0" title="Edit Teacher"><i class="fas fa-edit"></i></button>
+                            }
+
+                            <button class="btn pt-0 pb-0 btnDeleteTeacher" title="Delete Teacher" data-id="@item.TeacherID"><i class="fas fa-trash-alt"></i></button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+<script>
+    $('.btnDeleteTeacher').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("Delete", "Teachers")",
+                        method: "post",
+                        data: {
+                            id: $(this).attr("data-id")
+                        }
+                    }).done(function (response) {
+                        swal("Success", "Teacher has been deleted!", {
+                            icon: "success",
+                        })
+                            .then((value) => {
+                                window.location.reload();
+                            });
+                    });
+
+                }
+            });
+    });
+</script>

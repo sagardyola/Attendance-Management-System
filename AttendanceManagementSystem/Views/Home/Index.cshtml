@@ -1,0 +1,132 @@
+﻿@model AttendanceManagementSystem.ViewModels.HomeVM
+
+@{
+ViewBag.Title = "Home Page";
+}
+
+
+
+<section id="dashboard">
+    <div class="row text-center mb-3 pl-3 pr-3">
+        <div class="col-12 col-md-3 dash-outer">
+            <div class="row dash-inner text-white" style="background-color: #1D2731">
+                <div class="col-6">
+                    <i class="fas fa-university"></i><br />
+                    <div class="mt-2">Faculties</div>
+                </div>
+                <div class="col-6">
+                    <h3 class="mt-4">@Model.CountFaculties</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 dash-outer">
+            <div class="row dash-inner text-white" style="background-color: #0B3C5D">
+                <div class="col-6">
+                    <i class="fas fa-book-open"></i><br />
+                    <div class="mt-2">Courses</div>
+                </div>
+                <div class="col-6">
+                    <h3 class="mt-4">@Model.CountCourse</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 dash-outer">
+            <div class="row dash-inner text-white" style="background-color: #328CC1">
+                <div class="col-6">
+                    <i class="fas fa-chalkboard-teacher"></i><br />
+                    <div class="mt-2">Teachers</div>
+                </div>
+                <div class="col-6">
+                    <h3 class="mt-4">@Model.CountTeacher</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 dash-outer">
+            <div class="row dash-inner text-white" style="background-color: #328CC1">
+                <div class="col-6">
+                    <i class="fas fa-user-graduate"></i><br />
+                    <div class="mt-2">Students</div>
+                </div>
+                <div class="col-6">
+                    <h3 class="mt-4">@Model.CountStudent</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <div class="row mb-2">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <p class="lead">Number of Students in Faculties</p>
+            <canvas id="facStd" style="max-width: 500px;"></canvas>
+        </div>
+        <div class="col-6 pr-5">
+            <p class="lead">Student Attendance Status</p>
+            <canvas id="pieChartActiveStudents"></canvas>
+        </div>
+    </div>
+
+</section>
+
+@Scripts.Render("~/bundles/script/bootstrapgraph")
+
+<script>
+    //pie for users
+
+    var ctxP = document.getElementById("pieChartActiveStudents").getContext('2d');
+    var myPieChartActiveUsers = new Chart(ctxP, {
+        type: 'pie',
+        data: {
+            labels: ["Present", "Absent", "Late"],
+            datasets: [{
+                data: [@Model.CountPresent, @Model.CountAbsent, @Model.CountLate],
+                backgroundColor: ["#46BFBD", "#F7464A", "#FDB45C"],
+                hoverBackgroundColor: ["#5AD3D1", "#FF5A5E", "#FFC870"]
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    var ctx2 = document.getElementById("facStd").getContext('2d');
+    var myfacStd = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ["Networking", "Management", "Computing", "Multimedia"],
+            datasets: [{
+                label: ['# of Votes'],
+                data: [@Model.CountNet, @Model.CountMgm, @Model.CountCom, @Model.CountMul],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    
+</script>

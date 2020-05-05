@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Faculty>
+
+@{
+    ViewBag.Title = "Faculty";
+}
+
+<h3>Faculties</h3>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "Faculties")'"><i class="fas fa-plus mr-2 txt-default"></i>Add a Faculty</button>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultyName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacultyName)
+                </td>
+                <td>
+                    <div class="form-inline">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            using (Html.BeginForm("Edit", "Faculties", FormMethod.Get))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.FacultyID" />
+                                <button type="submit" class="btn pt-0 pb-0" title="Edit Faculty"><i class="fas fa-edit"></i></button>
+                            }
+
+                            <button class="btn pt-0 pb-0 btnDelete" title="Delete Faculty" data-id="@item.FacultyID"><i class="fas fa-trash-alt"></i></button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    $('.btnDelete').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("Delete", "Faculties")",
+                        method: "post",
+                        data: {
+                            id: $(this).attr("data-id")
+                        }
+                    }).done(function (response) {
+                        swal("Success", "Faculty has been deleted!", {
+                            icon: "success",
+                        })
+                            .then((value) => {
+                                window.location.reload();
+                            });
+                    });
+
+                }
+            });
+    });
+</script>

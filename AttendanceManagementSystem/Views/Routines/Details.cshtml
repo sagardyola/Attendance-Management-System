@@ -1,0 +1,57 @@
+﻿@model AttendanceManagementSystem.Models.Routine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.ClassName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.ClassName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoutineID }) |
+    @Html.ActionLink("Back to Routines", "Index")
+</p>

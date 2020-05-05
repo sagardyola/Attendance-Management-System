@@ -1,0 +1,108 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Routine>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Routines</h3>
+<button class="btn btn-sm btn-primary mb-4" onclick="location.href='@Url.Action("Create", "Routines")'"><i class="fas fa-plus mr-2 txt-default"></i>Add a Routine</button>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Class.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class.ClassName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+
+                    <div class="form-inline">
+                        @using (Html.BeginForm("Details", "Routines", FormMethod.Get))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.RoutineID" />
+                            <button type="submit" class="btn pt-0 pb-0" title="Details"><i class="fas fa-info-circle"></i></button>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            using (Html.BeginForm("Edit", "Routines", FormMethod.Get))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.RoutineID" />
+
+                                <button type="submit" class="btn pt-0 pb-0" title="Edit Routine"><i class="fas fa-edit"></i></button>
+                            }
+
+                            <button class="btn pt-0 pb-0 btnDelete" title="Delete Routines" data-id="@item.RoutineID"><i class="fas fa-trash-alt"></i></button>
+                        }
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    $('.btnDelete').click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("Delete", "Routines")",
+                        method: "post",
+                        data: {
+                            id: $(this).attr("data-id")
+                        }
+                    }).done(function (response) {
+                        swal("Success", "Routines has been deleted!", {
+                            icon: "success",
+                        })
+                            .then((value) => {
+                                window.location.reload();
+                            });
+                    });
+
+                }
+            });
+    });
+</script>

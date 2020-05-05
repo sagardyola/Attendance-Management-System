@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AttendanceManagementSystem.Controllers.AttendancesController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AttendancesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ClassesController">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ClassesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ClassTypesController">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ClassTypesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.CoursesController">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CoursesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.FacultiesController">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FacultiesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.FacultySemesterCoursesController">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FacultySemesterCoursesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ReportEnrollmentController">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportEnrollmentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ReportModulesController">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportModulesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ReportStudentClassController">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportStudentClassController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ReportStudentController">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportStudentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.ReportTeachingHoursController">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportTeachingHoursController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.RoutinesController">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RoutinesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.SemestersController">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SemestersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.StudentFacultySemestersController">
+    <Position X="7.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\StudentFacultySemestersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.StudentsController">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACARAACAAAAgAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\StudentsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.TeacherCoursesController">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TeacherCoursesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.TeachersController">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TeachersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.TeacherTypesController">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACAAAAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TeacherTypesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttendanceManagementSystem.Controllers.HomeController">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

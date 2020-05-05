@@ -1,0 +1,112 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Attendance";
+}
+
+<h3>Attendance</h3>
+@using (Html.BeginForm("Index", "Attendances", FormMethod.Get))
+{
+    <div class="container mt-3">
+        <div class="row mb-3">
+            <div class="col-12 col-md-6">
+                <div class="form-inline">
+                    <label>Course Class</label>
+                    @Html.DropDownList("RoutineID", null, htmlAttributes: new { @class = "form-control rounded-0 ml-2" })
+                    <button type="submit" value="Search" class="btn btn-primary rounded-0 ml-2">Search</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-inline">
+                    <label>Current Date</label>
+                    <input type="text" id="date" value="@DateTime.Now.ToShortDateString()" class="form-control ml-3 w-75" readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Entry Time</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (ViewBag.Students != null)
+            {
+                foreach (var x in ViewBag.Students)
+                {
+                    <tr>
+                        <td><input type="text" name="studentId" value="@x.StudentID" readonly /></td>
+                        <td>@x.Name</td>
+                        <td><input type="text" name="entryTime" value="" /></td>
+                        <td><input type="hidden" name="status" value="" /></td>
+                        <td><button class="btn btn-success btn-sm btnAttend" type="button">Record</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button id="submit" class="btn btn-primary ml-3 rounded-0">Save</button>
+}
+
+<script>
+    $(".btnAttend").click(function (e) {
+        e.preventDefault();
+
+        $(this).closest("tr").find('input[name="entryTime"]').val((new Date()).toLocaleTimeString());
+        $(this).closest("tr").find('input[name="status"]').val();
+
+    });
+
+    function rowsToJson() {
+        var heads = ["StudentID", "EntryTime", "Status"];
+
+
+        var rows = [];
+        $("tbody tr").each(function () {
+            cur = {
+                RoutineID: $("#RoutineID").val(),
+                Date: $("#date").val()
+            };
+            $(this).find("input").each(function (i, v) {
+
+                cur[heads[i]] = $(this).val();
+
+            });
+            rows.push(cur);
+            cur = {};
+        });
+        return rows;
+    }
+
+    $("#submit").click(function (e) {
+        e.preventDefault();
+
+
+        $.each(rowsToJson(), function (index, value) {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(rowsToJson()[index]),
+                url: "/Attendances/Index",
+                contentType: "application/json"
+            }).done(function (response) {
+                swal("Success", "Attendance Report Updated!", {
+                    icon: "success",
+                })
+                    .then((value) => {
+                        window.location.reload();
+                    });
+
+            });
+            console.log(rowsToJson()[index]);
+        });
+        console.log(rowsToJson());
+    });
+
+</script>

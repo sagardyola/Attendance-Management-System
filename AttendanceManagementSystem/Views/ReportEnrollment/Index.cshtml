@@ -1,0 +1,37 @@
+﻿@model AttendanceManagementSystem.ViewModels.EnrollmentReportVM
+
+@{
+    ViewBag.Title = "Students Enrollment Report";
+}
+
+<h2>Students Enrollment Report</h2>
+@using (Html.BeginForm("Index", "ReportEnrollment", FormMethod.Get))
+{
+    <div class="container mb-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-inline">
+                    <label>Course</label>
+                    @Html.DropDownList("CourseID", null, htmlAttributes: new { @class = "form-control rounded-0 w-75 ml-2" })
+                    <button type="submit" value="Search" class="btn btn-primary rounded-0 ml-3">Search</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+    <table class="table">
+        <tr>
+            <th>Student Name</th>
+            <th>Enrollment Date</th>
+        </tr>
+        @foreach (var x in Model.Students)
+        {
+            <tr>
+                <td>@x.Name</td>
+                <td>@x.EnrollmentDate.ToShortDateString()</td>
+            </tr>
+        }
+
+    </table>

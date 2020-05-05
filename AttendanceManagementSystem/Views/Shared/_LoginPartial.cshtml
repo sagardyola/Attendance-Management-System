@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right border-bottom pb-3 text-center">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+
+        if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+            @Html.ActionLink("Add users", "Register", new { controller = "Account", id = "registerLink" }, new { @class = "btn btn-primary w-100" })
+            }
+        }
+    }
+}
+else
+{
+    <button class="accordion btn-accordion"><i class="fas fa-file mr-2"></i>Admin Panel</button>
+    <div class="accordion-content">
+        @*<br />
+            @Html.ActionLink("Log in", "Login", new { controller = "Account", id = "loginLink" }, new { @class = "btn w-100 text-left" })*@
+
+
+        @*<a href="@Url.Action("Index", "FacultySemesterCourses")" class="btn w-100 text-left">Faculty Semester Course</a>
+            <br />
+            <a href="@Url.Action("Index", "StudentFacultySemesters")" id="" class="btn w-100 text-left">Student Faculty Semester</a>
+            <br />*@
+    </div>
+
+    @*<ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>*@
+}
+

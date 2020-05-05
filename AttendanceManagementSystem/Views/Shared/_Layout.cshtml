@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Attendance Management System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/script/jquerytimepicker")
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row text-center p-3 bg-accent mb-2">
+            <div class="col-12">
+                <h2 class="text-white pt-1">Islington College</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-3">
+                @Html.Partial("_LoginPartial")
+
+                <button class="btn-accordion" id="activity-home" onclick="location.href='@Url.Action("Index", "Home")'"><i class="fas fa-home mr-2"></i>Home</button>
+                <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Attendances")'"><i class="fas fa-calendar-check mr-2"></i>Attendances</button>
+                @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                {
+                    <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Courses")'"><i class="fas fa-book-open mr-2"></i>Courses</button>
+                    <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Faculties")'"><i class="fas fa-university mr-2"></i>Faculties</button>
+                    <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Routines")'"><i class="fas fa-clock mr-2"></i>Routines</button>
+                    <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Semesters")'"><i class="fas fa-book mr-2"></i>Semesters</button>
+                    <button class="btn-accordion" onclick="location.href='@Url.Action("Index", "Students")'"><i class="fas fa-user-graduate mr-2"></i>Student</button>
+
+                    <button class="accordion btn-accordion"><i class="fas fa-chalkboard mr-2"></i>Class</button>
+                    <div class="accordion-content">
+                        <a href="@Url.Action("Index", "Classes")" id="" class="btn w-100 text-left">Class Names</a>
+                        <br />
+                        <a href="@Url.Action("Index", "ClassTypes")" id="btnEnrollment" class="btn w-100 text-left">Class Types</a>
+                    </div>
+
+                    <button class="accordion btn-accordion"><i class="fas fa-chalkboard-teacher mr-2"></i>Teachers</button>
+                    <div class="accordion-content">
+                        <a href="@Url.Action("Index", "TeacherTypes")" id="" class="btn w-100 text-left">Teacher Types</a>
+                        <br />
+                        <a href="@Url.Action("Index", "TeacherCourses")" id="" class="btn w-100 text-left">Teacher Course</a>
+                        <br />
+                        <a href="@Url.Action("Index", "Teachers")" id="" class="btn w-100 text-left">Teachers</a>
+                    </div>
+
+                    <button class="accordion btn-accordion"><i class="fas fa-file mr-2"></i>Reports</button>
+                    <div class="accordion-content">
+                        <a href="@Url.Action("Index", "ReportEnrollment")" id="btnEnrollment" class="btn w-100 text-left">Enrollment</a>
+                        <br />
+                        <a href="@Url.Action("Index", "ReportModules")" id="" class="btn w-100 text-left">Teacher Module</a>
+                        <br />
+                        <a href="@Url.Action("DailyReport", "ReportStudent")" id="" class="btn w-100 text-left">Students Daily Attendance</a>
+                        <br />
+                        <a href="@Url.Action("WeeklyReport", "ReportStudent")" id="" class="btn w-100 text-left">Students Weekly Attendance</a>
+                        <br />
+                        <a href="@Url.Action("MonthlyReport", "ReportStudent")" id="" class="btn w-100 text-left">Students Monthly Attendance</a>
+                        <br />
+                        <a href="@Url.Action("Index", "ReportTeachingHours")" id="" class="btn w-100 text-left">Teacher Teaching Hours</a>
+                        <br />
+                        <a href="@Url.Action("Index", "ReportStudentClass")" id="" class="btn w-100 text-left">Absent Students</a>
+                        <br />
+                        <a href="@Url.Action("Index", "FacultySemesterCourses")" id="btnEnrollment" class="btn w-100 text-left">Faculty Semester Course</a>
+                        <br />
+                        <a href="@Url.Action("Index", "StudentFacultySemesters")" id="" class="btn w-100 text-left">Student Faculty Semester</a>
+                        <br />
+                    </div>
+                }
+            </div>
+                         
+            <div class="col-9 mt-3">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert")
+    @Scripts.Render("~/bundles/script/accordion")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

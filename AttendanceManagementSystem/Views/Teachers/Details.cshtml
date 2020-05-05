@@ -1,0 +1,57 @@
+﻿@model AttendanceManagementSystem.Models.Teacher
+
+@{
+    ViewBag.Title = "Teacher Details";
+}
+
+<h2>Teacher Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherType.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherType.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeacherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeachingHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeachingHours)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherID }) |
+    @Html.ActionLink("Back to Teachers", "Index")
+</p>

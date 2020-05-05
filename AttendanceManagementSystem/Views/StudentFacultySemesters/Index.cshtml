@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.StudentFacultySemester>
+
+@{
+    ViewBag.Title = "Student Faculty Semester";
+}
+
+<h2>Student Faculty Semester</h2>
+
+<div class="table-responsive mt-3">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty.FacultyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semester.SemesterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.Name)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faculty.FacultyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester.SemesterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

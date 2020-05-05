@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AttendanceManagementSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<h2>Student Details</h2>
+<hr />
+
+@foreach (var x in Model)
+{
+<div class="container">
+    <div class="row">
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            Name
+        </div>
+        <div class="col-6 col-md-4">
+            @x.Name
+        </div>
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.FacultyName)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.FacultyName
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.SemesterName)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.SemesterName
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.Email
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.ContactNo
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Address)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.Address
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Gender)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.Gender
+        </div>
+
+        <div class="col-6 col-md-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.DOB)
+        </div>
+        <div class="col-6 col-md-4">
+            @x.DOB.ToShortDateString()
+        </div>
+    </div>
+
+    <div class="mt-3 mb-3">
+        @Html.ActionLink("Weekly Report", "WeeklyReport", new { controller = "Students", id = x.StudentID }, new { @class = "btn btn-sm btn-primary" })
+        @Html.ActionLink("Monthly Report", "MonthlyReport", new { controller = "Students", id = x.StudentID }, new { @class = "btn btn-sm btn-primary" })
+    </div>
+
+    <div class="mt-3">
+        <hr />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = x.StudentID }) |
+            @Html.ActionLink("Back to Students", "Index")
+        </p>
+    </div>
+</div>
+}
